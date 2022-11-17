@@ -1,0 +1,27 @@
+[
+    {
+        "model": "chatter_web.theme",
+        "pk": 1,
+        "fields": {
+            "theme": "¿Crees que algún invitado del Hormiguero ha estado en la cárcel sin saberlo?",
+            "genre": [
+                1,
+                2
+            ]
+        }
+    },
+    {
+        "model": "chatter_web.genre",
+        "pk": 1,
+        "fields": {
+            "name": "Delincuencia"
+        }
+    },
+    {
+        "model": "chatter_web.genre",
+        "pk": 2,
+        "fields": {
+            "name": "Imaginación"
+        }
+    }
+]
