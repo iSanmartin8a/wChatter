@@ -1,10 +1,21 @@
-html, body {
+@font-face {
+  font-family: milky;
+  src: url(../fonts/Milky.ttf);
+}
+
+@font-face {
+  font-family: blobby;
+  src: url(../fonts/Blobby.ttf);
+}
+
+html,
+body {
   width: 100%;
   height: 100%;
 }
 
 body {
-  background: #0d1b2a;
+  background: url(../img/wallp.jpg) no-repeat center center fixed;
 }
 
 #container {
@@ -12,14 +23,88 @@ body {
   height: 100%;
 }
 
+#titleCard {
+  width: 100%;
+  margin-top: 5%;
+  padding-left: 1rem;
+}
+
+#mainTitle {
+  color: white;
+  font-family: blobby;
+  letter-spacing: 1rem;
+  text-align: center;
+  font-size: 8rem;
+
+  
+}
+
+.linear-wipe {
+  text-align: center;
+  
+  background: linear-gradient(to right, #FFF 20%, rgb(255, 127, 53) 40%, #FFF 80%);
+  background-size: 200% auto;
+  
+  color: #000;
+  background-clip: text;
+  text-fill-color: transparent;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  
+  animation: shine 10s linear infinite;
+}
+@keyframes shine {
+  to {
+    background-position: 200% center;
+  }
+}
+
 #mainCard {
   margin: auto;
-  margin-top: 10%;
-  width: 20%;
+  width: 20rem;
   height: 50%;
-  background: rgba(255, 255, 255, 0.5);
-  border-radius: 2rem;
-  box-shadow: rgba(255, 255, 255, 0.35) 0px 2px 8px;
+  background-image: linear-gradient(rgba(212, 111, 16, 0.6), rgba(206, 84, 8, 0.6)), url(../img/friends3.jpg);
+  background-size: cover;
+  background-position: center;
   padding: 3rem;
-  align-items: center;
+  border: 2px solid black;
+  box-shadow: 20px 20px rgba(0,0,0,.15);
+  transition: all .4s ease;
+}
+
+#mainCard:hover {
+  box-shadow: 10px 10px rgba(0,0,0,.25);
+}
+
+#description {
+  padding-top: 3rem;
+}
+
+#mainDescription {
+  font-size: 1.8rem;
+  color: wheat;
+  font-weight: bold;
+}
+
+p {
+  color: white;
+  font-family: milky;
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+#buttons {
+  width: 100%;
+  margin: 5rem 0 1rem 0;
+  display: flex;
+  flex-direction: column;
+  row-gap: 2rem;
+}
+
+.blue {
+  background: blue !important;
+}
+
+.green {
+  background: green !important;
 }

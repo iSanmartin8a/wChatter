@@ -1,11 +1,24 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block title %}Inicio{% endblock %}
+{% block title %}Chatter{% endblock %}
 
 {% block content %}
+<div id="titleCard">
+    <h1 id="mainTitle" class="linear-wipe">
+        Chatter
+    </h1>
+</div>
 <div id="mainCard">
- <p>hdsoghasdlghasñ</p>
+ <div id="description">
+    <h2 id="mainDescription">
+        Your stupid themes for conversations application.
+    </h2>
+ </div>
+ <div id="buttons">
+    <button type="button" class="btn btn-light">Play</button>
+    <button type="button" class="btn btn-light">Categories</button>
+ </div>
 </div>
 
 {% endblock %}
