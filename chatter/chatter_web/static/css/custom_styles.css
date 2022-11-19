@@ -8,12 +8,6 @@
   src: url(../fonts/Blobby.ttf);
 }
 
-html,
-body {
-  width: 100%;
-  height: 100%;
-}
-
 body {
   background: url(../img/wallp.jpg) no-repeat center center fixed;
 }
@@ -35,8 +29,6 @@ body {
   letter-spacing: 1rem;
   text-align: center;
   font-size: 8rem;
-
-  
 }
 
 .linear-wipe {
@@ -51,7 +43,7 @@ body {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   
-  animation: shine 10s linear infinite;
+  animation: shine 7s linear infinite;
 }
 @keyframes shine {
   to {
@@ -62,7 +54,7 @@ body {
 #mainCard {
   margin: auto;
   width: 20rem;
-  height: 50%;
+  height: 30rem;
   background-image: linear-gradient(rgba(212, 111, 16, 0.6), rgba(206, 84, 8, 0.6)), url(../img/friends3.jpg);
   background-size: cover;
   background-position: center;
@@ -72,8 +64,42 @@ body {
   transition: all .4s ease;
 }
 
-#mainCard:hover {
+#dCard {
+  margin: auto;
+  width: 20rem;
+  height: 30rem;
+  background: white;
+  border-radius: 2rem;
+  border: 2px solid black;
+  box-shadow: 20px 20px rgba(0,0,0,.15);
+  transition: all .4s ease;
+  padding: 1.5rem;
+}
+
+#numberCard {
+  font-family: milky;
+  font-size: 3rem;
+  text-align: right;
+}
+
+#mainCard:hover, #dCard:hover {
   box-shadow: 10px 10px rgba(0,0,0,.25);
+}
+
+#topCard {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+#iCard {
+  width: 4rem;
+}
+
+#themes {
+  font-size: 2rem;
+  padding: 2rem 0.5rem 2rem 0.5rem;
+  text-align: center;
 }
 
 #description {
@@ -81,16 +107,9 @@ body {
 }
 
 #mainDescription {
-  font-size: 1.8rem;
-  color: wheat;
-  font-weight: bold;
-}
-
-p {
+  font-size: 2rem;
   color: white;
-  font-family: milky;
-  font-size: 1.5rem;
-  text-align: center;
+  font-weight: bold;
 }
 
 #buttons {
@@ -99,12 +118,33 @@ p {
   display: flex;
   flex-direction: column;
   row-gap: 2rem;
+  align-items: center;
 }
 
-.blue {
-  background: blue !important;
+.arrow {
+  width: 3rem;
 }
 
-.green {
-  background: green !important;
+.inversed {
+  transform: rotate(180deg);
+}
+
+#footer {
+  position: fixed;
+  width: 100%;
+  bottom: 10rem;
+  display: flex;
+  justify-content: center;
+}
+
+.mb {
+  width: 10rem;
+}
+
+#cardTitle {
+  font-weight: 900;
+}
+
+#question {
+  font-size: 1.5rem;
 }

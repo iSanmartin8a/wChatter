@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Game{% endblock %}
+
+{% block content %}
+<div id="titleCard">
+    <h1 id="mainTitle" class="linear-wipe">
+        Chatter
+    </h1>
+</div>
+
+<div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <!-- Wrapper for carousel items -->
+    <div class="carousel-inner">
+        {% for theme in theme_list %}
+        <div id="dCard">
+            <div id="topCard">
+                <div id="iconCard"><img src="" alt="" id="iCard"></div>
+                <div id="numberCard"></div>
+            </div>
+            <div id="themes">
+                <h3 id="cardTitle"></h3>
+                <div id="question">
+                    {{ theme.theme }}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <!-- Carousel controls -->
+    {% if is_paginated %}
+    {% if page_obj.has_previous %}
+    <a class="carousel-control-prev" href="{{ request.path }}?page={{ page_obj.previous_page_number }}"
+        data-slide="prev">
+        <img src="{% static 'img/arrow.png' %}" alt="" class="arrow inversed">
+    </a>
+    {% endif %}
+    {% if page_obj.has_next %}
+    <a class="carousel-control-next" href="{{ request.path }}?page={{ page_obj.next_page_number }}" data-slide="next">
+        <img src="{% static 'img/arrow.png' %}" alt="" class="arrow">
+    </a>
+    {% endif %}
+    {% endif %}
+</div>
+<div id="footer">
+    <a href="{% url 'index' %}"><button type="button" class="btn btn-outline-light" id="back">Back</button></a>
+</div>
+
+<script>
+    var static = "{% static 'img/cardIcons/' %}";
+    var random_image = Math.floor(Math.random() * 5) + 1;
+    var path = static + random_image + ".png";
+      document.getElementById("iCard").src = path;
+    </script>
+{% endblock %}
+
