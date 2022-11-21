@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block title %}Game{% endblock %}
+{% block title %}Chatter{% endblock %}
 
 {% block content %}
 <div id="titleCard">
@@ -12,7 +12,7 @@
 
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
     <!-- Wrapper for carousel items -->
-    <div class="carousel-inner">
+    <div class="carousel-inner cortao">
         {% for theme in theme_list %}
         <div id="dCard">
             <div id="topCard">
@@ -31,20 +31,20 @@
     <!-- Carousel controls -->
     {% if is_paginated %}
     {% if page_obj.has_previous %}
-    <a class="carousel-control-prev" href="{{ request.path }}?page={{ page_obj.previous_page_number }}"
+    <a class="carousel-control-prev controller leftie" href="{{ request.path }}?page={{ page_obj.previous_page_number }}"
         data-slide="prev">
-        <img src="{% static 'img/arrow.png' %}" alt="" class="arrow inversed">
+        <img src="{% static 'img/arrow.png' %}" alt="" class="inversed">
     </a>
     {% endif %}
     {% if page_obj.has_next %}
-    <a class="carousel-control-next" href="{{ request.path }}?page={{ page_obj.next_page_number }}" data-slide="next">
+    <a class="carousel-control-next controller rightie" href="{{ request.path }}?page={{ page_obj.next_page_number }}" data-slide="next">
         <img src="{% static 'img/arrow.png' %}" alt="" class="arrow">
     </a>
     {% endif %}
     {% endif %}
 </div>
 <div id="footer">
-    <a href="{% url 'index' %}"><button type="button" class="btn btn-outline-light" id="back">Back</button></a>
+    <a href="{% url 'index' %}"><button type="button" class="btn btn-outline-light" id="back">Volver al inicio</button></a>
 </div>
 
 <script>

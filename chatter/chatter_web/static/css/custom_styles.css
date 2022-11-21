@@ -39,7 +39,6 @@ body {
   
   color: #000;
   background-clip: text;
-  text-fill-color: transparent;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   
@@ -123,10 +122,12 @@ body {
 
 .arrow {
   width: 3rem;
+  animation: float 5s ease-in-out infinite;
 }
 
 .inversed {
-  transform: rotate(180deg);
+  width: 3rem;
+  animation: float2 5s ease-in-out infinite;
 }
 
 #footer {
@@ -147,4 +148,69 @@ body {
 
 #question {
   font-size: 1.5rem;
+}
+
+@keyframes float {
+  0% {
+    filter: drop-shadow(1px 1px 1px rgb(216, 216, 216)) brightness(0) invert(1);
+    transform: scale(0.9);
+    transition: 5s ease;
+  }
+  50% {
+    filter: drop-shadow(1px 1px 10px rgb(231, 231, 231)) brightness(0) invert(1);
+    transform: scale(1.1);
+    transition: 5s ease;
+  }
+  100% {
+    filter: drop-shadow(1px 1px 1px rgb(216, 216, 216)) brightness(0) invert(1);
+    transform: scale(0.9);
+    transition: 5s ease;
+  }
+}
+
+@keyframes float2 {
+  0% {
+    filter: drop-shadow(1px 1px 1px rgb(212, 212, 212)) brightness(0) invert(1);
+    transform: scale(0.9) rotate(180deg);
+    transition: 5s ease;
+  }
+  50% {
+    filter: drop-shadow(1px 1px 10px rgb(231, 231, 231)) brightness(0) invert(1);
+    transform: scale(1.1) rotate(180deg);
+    transition: 5s ease;
+  }
+  100% {
+    filter: drop-shadow(1px 1px 1px rgb(216, 216, 216)) brightness(0) invert(1);
+    transform: scale(0.9) rotate(180deg);
+    transition: 5s ease;
+  }
+}
+
+.controller {
+  position: absolute;
+  width: fit-content !important;
+  height: fit-content !important;
+  margin-top: 15rem;
+}
+
+.leftie {
+  left: 30%;
+}
+
+.rightie {
+  right: 30%;
+}
+
+.cortao {
+  overflow:visible;
+}
+
+@media (max-width: 1200px) {
+  .controller {
+    margin-top: 35rem;
+  }
+
+  #mainTitle {
+    font-size: 5rem;
+  }
 }
