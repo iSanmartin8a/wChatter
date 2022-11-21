@@ -1,7 +1,7 @@
 from urllib import request
 from django.http import HttpResponse
 from django.shortcuts import render
-from chatter_web.models import Theme
+from chatter_web.models import Theme, Genre
 from django.views.generic import ListView
 import datetime
 
@@ -19,3 +19,6 @@ class Game(ListView):
     def get_queryset(self):
         queryset = Theme.objects.all().distinct().order_by('?')
         return queryset
+
+class Categories(ListView):
+    model = Genre

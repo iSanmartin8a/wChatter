@@ -41,7 +41,6 @@ body {
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  
   animation: shine 7s linear infinite;
 }
 @keyframes shine {
@@ -213,4 +212,16 @@ body {
   #mainTitle {
     font-size: 5rem;
   }
+}
+
+.sliderDesign {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 3rem;
+  margin-top: 8rem;
 }

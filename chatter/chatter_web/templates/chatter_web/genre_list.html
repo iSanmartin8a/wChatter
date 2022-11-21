@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Categorías{% endblock %}
+
+{% block content %}
+<div id="titleCard">
+    <h1 id="mainTitle" class="linear-wipe">
+        Chatter
+    </h1>
+</div>
+
+      <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner sliderDesign">
+            {% for genre in genre_list|slice:":1" %}
+                <div class="item {% if forloop.first %} active {% endif %}">
+                {{ genre.name }}
+                </div>
+            {% endfor %}
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+
+<div id="footer">
+    <a href="{% url 'index' %}"><button type="button" class="btn btn-outline-light" id="back">Volver al inicio</button></a>
+</div>
+{% endblock %}
+
