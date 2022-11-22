@@ -257,7 +257,7 @@ body {
   cursor: pointer;
 }
 
-input:checked +    {
+input:checked + label {
   color: orange;
 }
 

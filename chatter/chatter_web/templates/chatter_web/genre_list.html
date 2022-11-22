@@ -25,5 +25,20 @@
 <div id="footer">
     <a href="{% url 'index' %}"><button type="button" class="btn btn-outline-light" id="back">Volver al inicio</button></a>
 </div>
+
+<script>
+    {% comment %} var cat = document.querySelector('.cat');
+
+    function setProperty(duration) {
+      cat.style.setProperty('--animation-time', duration +'s');
+    }
+    
+    function changeAnimationTime() {
+      var animationDuration = Math.random();
+      setProperty(animationDuration);
+    }
+    
+    setInterval(changeAnimationTime, 1000); {% endcomment %}
+</script>
 {% endblock %}
 
