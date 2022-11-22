@@ -10,36 +10,11 @@
     </h1>
 </div>
 
-    {% comment %} <div class="carousel-inner sliderDesign">
-        {% for genre in genre_list|slice:":1" %}
-            {% if forloop.first %}
-                <div class="active item">
-            {% else %}
-                <div class="item">
-            {% endif %}
-            {{ genre.name }}
-            </div>
-        {% endfor %}
-        <div id="controladores">
-            <div id="leftie">
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                  </button>
-            </div>
-            <div id="rightie">
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                  <span class="visually-hidden">Next</span>
-                </button>
-            </div>
-        </div>
-    </div> {% endcomment %}
-    <div id="categorias">
+    <div id="cats">
         {% for genre in genre_list %}
-        <div class="form-check" id="categoria">
-            <input class="form-check-input" type="checkbox" value="" id="flexCheck">
-            <label class="form-check-label" for="flexCheck">
+        <div class="form-check cat">
+            <input class="form-check-input flexCheck" type="checkbox" value="{{genre.name}}" id="{{genre.name}}">
+            <label class="form-check-label catLabel" for="{{genre.name}}">
               {{genre.name}}
             </label>
           </div>
@@ -50,12 +25,5 @@
 <div id="footer">
     <a href="{% url 'index' %}"><button type="button" class="btn btn-outline-light" id="back">Volver al inicio</button></a>
 </div>
-
-<script>
-    var static = "{% static 'img/cardIcons/' %}";
-    var random_image = Math.floor(Math.random() * 5) + 1;
-    var path = static + random_image + ".png";
-      document.getElementById("iCard").src = path;
-    </script>
 {% endblock %}
 

@@ -8,4 +8,16 @@ function showRandomNumber() {
   var random_quote = Math.floor(Math.random() * 6) + 1;
   document.getElementById("cardTitle").innerHTML = quotes[random_quote];
 
+  var cat = document.querySelector('.cat');
+
+  function setProperty(duration) {
+    cat.style.setProperty('--animation-time', duration +'s');
+  }
+  
+  function changeAnimationTime() {
+    var animationDuration = Math.random();
+    setProperty(animationDuration);
+  }
+  
+  setInterval(changeAnimationTime, 1000);
 }
