@@ -10,21 +10,26 @@
     </h1>
 </div>
 
+<form action="{% url 'buscar' %}">
     <div id="cats">
+        {% csrf_token %}
         {% for genre in genre_list %}
         <div class="form-check cat">
-            <input class="form-check-input flexCheck" type="checkbox" value="{{genre.name}}" id="{{genre.name}}">
+            <input class="form-check-input flexCheck" type="checkbox" value="{{genre}}" id="{{genre.name}}">
             <label class="form-check-label catLabel" for="{{genre.name}}">
               {{genre.name}}
             </label>
           </div>
         {% endfor %}
+        </form>
     </div>
-
-</div>
-<div id="footer">
-    <a href="{% url 'index' %}"><button type="button" class="btn btn-outline-light" id="back">Volver al inicio</button></a>
-</div>
+    
+  </div>
+  <div id="footer">
+      <button class="btn btn-outline-light" type="submit">Jugar</button>
+      <a href="{% url 'index' %}"><button type="button" class="btn btn-outline-light" id="back">Volver al inicio</button></a>
+    </div>
+  </form>
 
 <script>
     {% comment %} var cat = document.querySelector('.cat');

@@ -22,3 +22,22 @@ class Game(ListView):
 
 class Categories(ListView):
     model = Genre
+
+class SearchResultsListView(ListView):
+    model = Theme
+    paginate_by = 5
+
+    def get_queryset(self):
+        query = self.request.GET.get('q')
+        if query:
+            self.query = query
+            object_list = Theme.objects.filter(genre__icontains=query)
+            return object_list
+        else:
+            return []
+
+    def get_context_data(self, **kwargs):
+        context = super(SearchResultsListView, self).get_context_data(**kwargs)
+        context['busqueda'] = self.query
+        context['anterior'] = self.request.META.get('HTTP_REFERER')
+        return super().get_context_data(**kwargs)

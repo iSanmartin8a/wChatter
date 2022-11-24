@@ -17,7 +17,8 @@
   --animation-time: 5s 750ms; 
 }
 
-body {
+body{
+
   background: url(../img/wallp.jpg) no-repeat center center fixed;
 }
 
@@ -139,6 +140,10 @@ body {
   bottom: 10rem;
   display: flex;
   justify-content: center;
+}
+
+#footer button {
+  margin: 1rem;
 }
 
 .mb {
