@@ -26,13 +26,23 @@ class Categories(ListView):
 class SearchResultsListView(ListView):
     model = Theme
     paginate_by = 1
+    template_name = 'chatter_web/theme_list.html'
 
     def get_queryset(self):
         query = self.request.GET.get('q')
+        query_splitted = query.split(", ")
+        print(query_splitted)
         if query:
             self.query = query
-            object_list = Theme.objects.filter(genre_name__icontains=query)
-            return object_list
+            queryset = []
+            for word in query_splitted:
+                id_generos = Genre.objects.filter(name__icontains=word).values_list('id', flat=True)
+                print(id_generos)
+                object_list = Theme.objects.filter(genre__in=id_generos)
+                print(object_list)
+                queryset.append(object_list)
+            print(queryset)
+            return queryset
         else:
             return []
 

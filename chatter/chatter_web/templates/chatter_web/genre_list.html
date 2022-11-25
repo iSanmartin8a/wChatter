@@ -15,13 +15,14 @@
         {% csrf_token %}
         {% for genre in genre_list %}
         <div class="form-check cat">
-            <input class="form-check-input flexCheck" type="checkbox" value="{{ busqueda }}" id="{{genre.name}}" name="q">
+            <input class="form-check-input flexCheck" type="checkbox" value="{{ genre.name }}" id="{{genre.name}}" name="{{genre.name}}">
             <label class="form-check-label catLabel" for="{{genre.name}}">
               {{genre.name}}
             </label>
           </div>
-        {% endfor %}
-    </div>
+          {% endfor %}
+        </div>
+        <input type="text" name="q" value="{{ busqueda }}" id="busqueda">
     
   </div>
   <div id="footer">
@@ -33,7 +34,7 @@
 <script>
     {% comment %} var cat = document.querySelector('.cat');
 
-    function setProperty(duration) {
+    function setProperty(duration) {  
       cat.style.setProperty('--animation-time', duration +'s');
     }
     
@@ -43,6 +44,11 @@
     }
     
     setInterval(changeAnimationTime, 1000); {% endcomment %}
+    {% for genre in genre_list %}
+    document.getElementById("{{ genre.name }}").addEventListener("change", ()=>{
+      document.getElementById("busqueda").value += "{{ genre.name }}, ";
+  });
+  {% endfor %}
 </script>
 {% endblock %}
 
