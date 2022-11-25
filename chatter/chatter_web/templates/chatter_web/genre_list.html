@@ -15,13 +15,12 @@
         {% csrf_token %}
         {% for genre in genre_list %}
         <div class="form-check cat">
-            <input class="form-check-input flexCheck" type="checkbox" value="{{genre}}" id="{{genre.name}}">
+            <input class="form-check-input flexCheck" type="checkbox" value="{{ busqueda }}" id="{{genre.name}}" name="q">
             <label class="form-check-label catLabel" for="{{genre.name}}">
               {{genre.name}}
             </label>
           </div>
         {% endfor %}
-        </form>
     </div>
     
   </div>

@@ -25,13 +25,13 @@ class Categories(ListView):
 
 class SearchResultsListView(ListView):
     model = Theme
-    paginate_by = 5
+    paginate_by = 1
 
     def get_queryset(self):
         query = self.request.GET.get('q')
         if query:
             self.query = query
-            object_list = Theme.objects.filter(genre__icontains=query)
+            object_list = Theme.objects.filter(genre_name__icontains=query)
             return object_list
         else:
             return []
