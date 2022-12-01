@@ -45,7 +45,7 @@ class SearchResultsListView(ListView):
             for word in query_splitted:
                 id_generos = Genre.objects.filter(name__icontains=word).values_list('id', flat=True)
                 print(id_generos)
-                object_list = Theme.objects.filter(genre__in=id_generos).values_list('theme', flat=True)
+                object_list = Theme.objects.filter(genre__in=id_generos).order_by('?').distinct().values_list('theme', flat=True)
                 print(object_list)
                 queryset |= object_list
 
@@ -59,27 +59,3 @@ class SearchResultsListView(ListView):
         context['anterior'] = self.request.META.get('HTTP_REFERER')
         context['q'] = self.request.GET.get('q')
         return context
-
-def searchThemes(request, self):
-    query = self.request.GET.get('q')
-
-
-    if query is not None:
-        query_splitted = query.split(", ")[:-1]
-        print(query_splitted)
-        self.query = query
-        queryset = Theme.objects.none()
-        for word in query_splitted:
-            id_generos = Genre.objects.filter(name__icontains=word).values_list('id', flat=True)
-            print(id_generos)
-            object_list = Theme.objects.filter(genre__in=id_generos).values_list('theme', flat=True)
-            print(object_list)
-            queryset |= object_list
-
-        p = Paginator(queryset, 1)
-        page = p.page(2)
-        context = {'themes': page}
-
-        return render(request, 'chatter_web/search_themes.html', context)
-    else:
-        return []
