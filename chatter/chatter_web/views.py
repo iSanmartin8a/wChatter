@@ -57,7 +57,8 @@ class SearchResultsListView(ListView):
         context = super(SearchResultsListView, self).get_context_data(**kwargs)
         context['busqueda'] = self.queryset
         context['anterior'] = self.request.META.get('HTTP_REFERER')
-        return super().get_context_data(**kwargs)
+        context['q'] = self.request.GET.get('q')
+        return context
 
 def searchThemes(request, self):
     query = self.request.GET.get('q')
