@@ -10,15 +10,13 @@
         integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'css/custom_styles.css' %}">
     <link rel="shortcut icon" type="image/png" href="{% static 'img/cFlat.png' %}"/>
-    <script src="{% static 'js/custom_js.js' %}"></script>
-
 </head>
 
-<body onload="showRandomNumber()">
+<body>
     <div id="container">
         <div id="titleCard">
             <h1 id="mainTitle" class="linear-wipe">Chatter</h1>
-          </div>
+        </div>
         {% block content %}{% endblock %}
     </div>
 

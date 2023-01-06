@@ -13,12 +13,16 @@
   src: url(../fonts/Ther.ttf);
 }
 
+@font-face {
+  font-family: akira;
+  src: url(../fonts/Akira.ttf);
+}
+
 :root {
   --animation-time: 5s 750ms; 
 }
 
 body{
-
   background: url(../img/wallp.jpg) no-repeat center center fixed;
 }
 
@@ -35,14 +39,14 @@ body{
 
 #mainTitle {
   color: white;
-  font-family: blobby;
+  font-family: akira;
   letter-spacing: 1rem;
   text-align: center;
-  font-size: clamp(3rem, 8vw, 8rem);
+  font-size: 8rem;
+  text-align: center;
 }
 
-.linear-wipe {
-  text-align: center;
+/* .linear-wipe {
   
   background: linear-gradient(to right, #FFF 20%, rgb(255, 127, 53) 40%, #FFF 80%);
   background-size: 200% auto;
@@ -51,8 +55,7 @@ body{
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: shine 7s linear infinite;
-}
+} */
 
 #mainCard {
   margin: auto;
@@ -67,8 +70,19 @@ body{
   transition: all .4s ease;
 }
 
+.cardRow {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  vertical-align: middle;
+  column-gap: 4rem;
+}
+
+.leftArrow, .rightArrow {
+  margin-top: 14rem;
+}
+
 #dCard {
-  margin: auto;
   width: 20rem;
   height: 30rem;
   background: white;
@@ -105,8 +119,8 @@ body{
   text-align: center;
 }
 
-#description {
-  padding-top: 3rem;
+.boton {
+  font-weight: bold !important; 
 }
 
 #mainDescription {
@@ -134,10 +148,14 @@ body{
   animation: float2 5s ease-in-out infinite;
 }
 
+.inversed:hover, .arrow:hover {
+  transition: all .4s ease;
+}
+
 #footer {
-  position: fixed;
+  z-index: 999;
+  margin-top: 6rem;
   width: 100%;
-  bottom: 10rem;
   display: flex;
   justify-content: center;
 }
@@ -194,103 +212,163 @@ body{
   }
 }
 
-#controladores {
-  display: flex;
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 13rem;
-}
-
 .rightie, .leftie {
   width: fit-content !important;
   height: fit-content !important;
 }
 
-#rightie {
-  position: absolute;
-  right: 30%;
+#busqueda {
+  width: 100rem;
+  height: 5rem;
 }
 
-#leftie {
-  position: absolute;
-  left: 30%;
-}
-
-.cortao {
-  overflow:visible;
-}
-
-.sliderDesign {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  color: white;
-  font-size: 3rem;
-  margin-top: 8rem;
-}
-
-#cats {
+.cats {
   width: 80%;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
   margin: auto;
-  row-gap: 4rem;
+  column-gap: 2rem;
   text-align: center;
 }
 
-.cat {
-  width: 30 rem;
-  height: 4rem;
-  font-size: clamp(1.5rem, 3vw, 3rem);
+/* .cat {
+  width: fit-content;
+  height: fit-content;
+   animation: lights  var(--animation-time) linear infinite; 
+}
+
+@keyframes animate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.borde {
+  width: fit-content;
+  height: fit-content;
+  background-color: var(--clr);
+}
+
+.cat label {
+  padding: 1rem 1rem;
+  border: 5px solid rgba(0, 0, 0, 0.3);
+  font-size: 2rem;
+  vertical-align: middle;
   color: white;
+  opacity: 0.7;
   font-family: aurora;
   text-transform: uppercase;
-  animation: lights  var(--animation-time) linear infinite;
+  transition: 1s;
+  -webkit-box-reflect: below 1px
+  linear-gradient(transparent,transparent,#0004);
+}
+
+.cat label:hover {
+  opacity: 1;
+  cursor: pointer;
 }
 
 .flexCheck {
   display: none;
 }
 
-  .form-check-label:hover {
+.cat:hover {
   cursor: pointer;
 }
 
 input:checked + label {
-  color: orange;
+  opacity: 1;
+  background: var(--clr);
+  box-shadow: 0 0 10px var(--clr),
+  0 0 30px var(--clr),
+  0 0 60px var(--clr),
+  0 0 100px var(--clr);
+  border: 5px solid rgba(0, 0, 0, 0);
+} */
+
+.genreSpan {
+  position: relative;
+  padding: 20px 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  text-decoration: none;
+  margin: 15px 10px;
+  transition: 1s;
+  -webkit-box-reflect: below 1px
+  linear-gradient(transparent,transparent,#0004);
+}
+
+input:checked ~ .genreSpan {
+  background: var(--clr);
+  box-shadow: 0 0 10px var(--clr),
+  0 0 30px var(--clr),
+  0 0 60px var(--clr),
+  0 0 100px var(--clr);
+}
+
+.genreSpan::before {
+  content: '';
+  position: absolute;
+  width: 40px;
+  height: 500%;
+  background: var(--clr);
+  transition: 1s;
+  animation: animate 3s linear infinite;
+  animation-delay: calc(-0.33s * var(--1));
+}
+
+input:not(:checked) ~ .genreSpan::before {
+  background: var(--clr);
+}
+
+input:checked ~ .genreSpan::before {
+  width: 120%;
+}
+
+input:not(:checked) ~ .genreSpan::after {
+  content: '';
+  position: absolute;
+  inset: 4px;
+  background: rgb(18, 20, 71);
+  transition: 0.5s;
+}
+
+input:checked ~ .genreSpan::after {
+  background: var(--clr);
+}
+
+span {
+  position: relative;
+  z-index: 1;
+  font-size: 1.5rem;
+  color: #fff;
+  opacity: 0.5;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-family: milky;
+}
+
+input:checked ~ .genreSpan span, .genreSpan:hover span {
+  opacity: 1;
 }
 
 /* RESPONSIVE */
 
 @media (max-width: 1200px) {
-  #rightie {
-    right: 20%;
-  }
-
-  #leftie {
-    left: 20%;
-  }
-
   #cats {
     row-gap: 3rem;
   }
 }
 
 @media (max-width: 800px) {
-  #rightie {
-    right: 10%;
-  }
-
-  #leftie {
-    left: 10%;
-  }
-
   #myCarousel, #mainCard {
     margin-top: 3rem;
   }
@@ -298,17 +376,18 @@ input:checked + label {
   #cats {
     row-gap: 2rem;
   }
+
+  #mainTitle {
+    font-size: 4rem;
+    margin-top: 5rem;
+  }
+
+  #mainCard {
+    margin-top: 3rem;
+  }
 }
 
 @media (max-width: 600px) {
-  
-  #rightie {
-    right: 30%;
-  }
-  
-  #leftie {
-    left: 30%;
-  }
 
   #controladores {
     top: 33rem;
@@ -389,5 +468,14 @@ input:checked + label {
 @keyframes shine {
   to {
     background-position: 200% center;
+  }
+}
+
+@keyframes animate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
   }
 }

@@ -6,43 +6,52 @@
 {% block content %}
 
 <form action="{% url 'buscar' %}">
-    <div id="cats">
+    <div class="cats" onload="chargeGenre()">
         {% for genre in genre_list %}
-        <div class="form-check cat">
-            <input class="form-check-input flexCheck" type="checkbox" value="{{ genre.name }}" id="{{genre.name}}" name="{{genre.name}}">
-            <label class="form-check-label catLabel" for="{{genre.name}}">
-              {{genre.name}}
-            </label>
-          </div>
+        <div>
+        <input type="checkbox" hidden value="{{ genre.short }}" id="{{ genre.short }}" name="{{ genre.short }}" checked>
+        <a href="#" style="--clr: {{ genre.color }}; --i: 0" class="genreSpan" onclick="addGenre('{{ genre.short }}')"><span>{{ genre.name }}</span></a>
+        </div>
           {% endfor %}
         </div>
-        <input type="text" name="q" value="{{ busqueda }}" id="busqueda">
-    
-  </div>
+        <input type="text" name="q" value="{{ busqueda }}" id="busqueda" hidden>
   <div id="footer">
-      <button class="btn btn-outline-light" type="submit">Jugar</button>
-      <a href="{% url 'index' %}"><button type="button" class="btn btn-outline-light" id="back">Volver al inicio</button></a>
+      <button class="btn btn-outline-light boton" type="submit">Jugar</button>
+      <a href="{% url 'index' %}"><button type="button" class="btn btn-outline-light boton" id="back">Volver al inicio</button></a>
     </div>
   </form>
 
 <script>
-    {% comment %} var cat = document.querySelector('.cat');
+  var generos = new Array();
+  {% for genre in genre_list %}
+    generos.push("{{ genre.short }}");
+    {% endfor %}
 
-    function setProperty(duration) {  
-      cat.style.setProperty('--animation-time', duration +'s');
+    function addGenre(genero){
+      var genre = document.getElementById(genero);
+
+      if(genre.checked){
+        console.log("hola, he llegado y es true");
+        for (var i = generos.length - 1; i >= 0; i--) {
+          if (generos[i] == genre.value) {
+            generos.splice(i, 1);
+            console.log("hola, he llegado y es true y he borrado");
+          }
+        }
+        genre.checked = false;
+      }else{
+        console.log("hola, he llegado y es false");
+        generos.push(genre.value);
+        genre.checked = true;
+      }
+      var output2 = generos.toString();
+      document.getElementById("busqueda").value = output2;
+
     }
-    
-    function changeAnimationTime() {
-      var animationDuration = Math.random();
-      setProperty(animationDuration);
-    }
-    
-    setInterval(changeAnimationTime, 1000); {% endcomment %}
-    {% for genre in genre_list %}
-    document.getElementById("{{ genre.name }}").addEventListener("change", ()=>{
-      document.getElementById("busqueda").value += "{{ genre.name }}, ";
-  });
-  {% endfor %}
+
+    var output = generos.toString();
+    document.getElementById("busqueda").value += output;
+    console.log(output);
 </script>
 {% endblock %}
 

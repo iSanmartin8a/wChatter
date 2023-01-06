@@ -2,9 +2,16 @@
 {% load static %} 
 {% block title %}Chatter{% endblock%} 
 {% block content %}
-<div id="myCarousel" class="carousel slide" data-ride="carousel">
-  <!-- Wrapper for carousel items -->
-  <div class="carousel-inner cortao">
+
+<div class="cardRow">
+  {% if is_paginated %} 
+  {% if page_obj.has_previous %}
+    <div class="leftArrow">
+      <a class="leftie"  href="{% url 'buscar' %}?q={{q}}&page={{ page_obj.previous_page_number }}">
+        <img src="{% static 'img/arrow.png' %}" alt="" class="inversed" />
+      </a>
+    </div>
+    {% endif %}
     {% for theme in theme_list %}
     <div id="dCard">
       <div id="topCard">
@@ -14,34 +21,21 @@
       <div id="themes">
         <h3 id="cardTitle"></h3>
         <div id="question">{{ theme }}</div>
-        
       </div>
     </div>
     {% endfor %}
-  </div>
-  <!-- Carousel controls -->
-  <div id="controladores">
-    {% if is_paginated %} {% if page_obj.has_previous %}
-    <div id="leftie">
-      <a class="carousel-control-prev controller leftie" href="{% url 'buscar' %}?q={{q}}&page={{ page_obj.previous_page_number }}" data-slide="prev">
-        <img src="{% static 'img/arrow.png' %}" alt="" class="inversed" />
-      </a>
-    </div>
-    {% endif %} {% if page_obj.has_next %}
-    <div id="rightie">
-      <a class="carousel-control-next controller rightie" href="{% url 'buscar' %}?q={{q}}&page={{ page_obj.next_page_number }}" data-slide="next">
+    {% if page_obj.has_next %}
+    <div class="rightArrow">
+      <a class="rightie"  href="{% url 'buscar' %}?q={{q}}&page={{ page_obj.next_page_number }}">
         <img src="{% static 'img/arrow.png' %}" alt="" class="arrow" />
       </a>
     </div>
-    {% endif %} {% endif %}
+    {% endif %} 
+    {% endif %}
   </div>
-</div>
+
 <div id="footer">
-  <a href="{% url 'index' %}"
-    ><button type="button" class="btn btn-outline-light" id="back">
-      Volver al inicio
-    </button></a
-  >
+  <a href="{% url 'index' %}"><button type="button" class="btn btn-outline-light boton" id="back">Volver al inicio</button></a>
 </div>
 
 <script>

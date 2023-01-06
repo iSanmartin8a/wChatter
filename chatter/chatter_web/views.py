@@ -24,7 +24,7 @@ class Game(ListView):
     paginate_by = 1
 
     def get_queryset(self):
-        queryset = Theme.objects.all().distinct().order_by('?')
+        queryset = Theme.objects.all()
         return queryset
 
 class Categories(ListView):
@@ -38,15 +38,12 @@ class SearchResultsListView(ListView):
     def get_queryset(self):
         query = self.request.GET.get('q')
         if query is not None:
-            query_splitted = query.split(", ")[:-1]
-            print(query_splitted)
+            query_splitted = query.split(",")
             self.query = query
             queryset = Theme.objects.none()
             for word in query_splitted:
-                id_generos = Genre.objects.filter(name__icontains=word).values_list('id', flat=True)
-                print(id_generos)
-                object_list = Theme.objects.filter(genre__in=id_generos).order_by('?').distinct().values_list('theme', flat=True)
-                print(object_list)
+                id_generos = Genre.objects.filter(short__icontains=word).values_list('id', flat=True)
+                object_list = Theme.objects.filter(genre__in=id_generos).distinct().values_list('theme', flat=True).order_by('?').distinct()
                 queryset |= object_list
 
             return queryset

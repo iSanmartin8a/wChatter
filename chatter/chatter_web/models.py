@@ -26,6 +26,10 @@ class Genre(models.Model):
     """Model representing a theme genre."""
     name = models.CharField(max_length=200, 
         help_text='Enter a theme genre (e.g. Science Fiction)')
+    short = models.CharField(max_length=50,
+        default='')
+    color = models.CharField(max_length=10,
+        default='')
 
     def __str__(self):
         """String for representing the Model object."""
