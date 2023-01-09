@@ -11,6 +11,7 @@ from django.core import serializers
 import json
 from django.http import JsonResponse
 from django.core.paginator import Paginator
+from django.core.cache import cache
 
 # Create your views here.
 def index(request):
@@ -24,8 +25,13 @@ class Game(ListView):
     paginate_by = 1
 
     def get_queryset(self):
-        queryset = Theme.objects.all()
-        return queryset
+        queryset_list = Theme.objects.all().order_by('?')
+        queryset_list = cache.get('queryset_list')
+        if not queryset_list:
+            queryset_list = Theme.objects.all().order_by('?')
+            cache.set('queryset_list',queryset_list)
+        return queryset_list
+
 
 class Categories(ListView):
     model = Genre
@@ -43,9 +49,8 @@ class SearchResultsListView(ListView):
             queryset = Theme.objects.none()
             for word in query_splitted:
                 id_generos = Genre.objects.filter(short__icontains=word).values_list('id', flat=True)
-                object_list = Theme.objects.filter(genre__in=id_generos).distinct().values_list('theme', flat=True).order_by('?').distinct()
+                object_list = Theme.objects.filter(genre__in=id_generos).distinct().values_list('theme', flat=True).order_by('?')
                 queryset |= object_list
-
             return queryset
         else:
             return []

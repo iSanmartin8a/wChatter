@@ -18,6 +18,11 @@
   src: url(../fonts/Akira.ttf);
 }
 
+@font-face {
+  font-family: fifties;
+  src: url(../fonts/Fifties.ttf);
+}
+
 :root {
   --animation-time: 5s 750ms; 
 }
@@ -35,11 +40,12 @@ body{
   width: 100%;
   margin-top: 5%;
   padding-left: 1rem;
+  margin-bottom: 3rem;
 }
 
 #mainTitle {
   color: white;
-  font-family: akira;
+  font-family: fifties;
   letter-spacing: 1rem;
   text-align: center;
   font-size: 8rem;
